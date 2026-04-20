@@ -1,12 +1,15 @@
 import { Preloader } from '@ui';
 import { useSelector } from '@store';
 import { Navigate } from 'react-router';
-import { TProtectedRouteProps } from 'src/components/protected-route/type';
+import { TProtectedRouteProps } from './type';
+import { useLocation } from 'react-router-dom';
 
 export const ProtectedRoute = ({
   onlyUnAuth = false,
   children
 }: TProtectedRouteProps) => {
+  const location = useLocation();
+
   const isAuthChecked = useSelector((state) => state.user.isAuthChecked);
   const user = useSelector((state) => state.user.data);
 
@@ -22,7 +25,7 @@ export const ProtectedRoute = ({
 
   if (!onlyUnAuth && !user) {
     // Если маршрут для авторизованного пользователя, но пользователь не авторизован, то делаем редирект на страницу логина
-    return <Navigate replace to='/login' />;
+    return <Navigate replace to='/login' state={{ from: location }} />;
   }
 
   return children;
