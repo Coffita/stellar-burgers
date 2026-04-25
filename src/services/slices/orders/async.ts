@@ -1,9 +1,4 @@
-import {
-  TNewOrderResponse,
-  getOrderByNumberApi,
-  getOrdersApi,
-  orderBurgerApi
-} from '@api';
+import { getOrderByNumberApi, getOrdersApi, orderBurgerApi } from '@api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 
