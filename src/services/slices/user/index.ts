@@ -30,6 +30,7 @@ export const userSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.data = action.payload;
         state.isAuthenticated = true;
+        state.isAuthChecked = true;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.registerError = action.error.message || 'Ошибка регистрации';
